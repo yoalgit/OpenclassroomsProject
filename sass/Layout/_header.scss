@@ -1,0 +1,10 @@
+@use "../Utils/mixins";
+
+header {
+  text-align: center;
+  box-shadow: 0 0 0.5rem #cecece;
+  font-family: "Shrikhand";
+  font-size: small;
+  padding: 0.5rem;
+  position: relative;
+}

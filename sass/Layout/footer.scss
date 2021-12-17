@@ -1,0 +1,19 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  background-color: #353535;
+  padding: 1rem;
+
+  &__title {
+    font-family: "Shrikhand";
+    font-size: 1rem;
+    padding-bottom: 1rem;
+  }
+  &__link {
+    padding: 0.3rem;
+  }
+  &__link i {
+    width: 1.5rem;
+  }
+}

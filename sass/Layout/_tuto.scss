@@ -1,0 +1,47 @@
+@use "../Utils/variables";
+@use "../Utils/mixins";
+
+.tuto {
+  counter-reset: steps;
+  margin: 0.5rem;
+  &__list {
+    display: flex;
+    flex-direction: column;
+  }
+  &__btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    background-color: variables.$background;
+    padding: 1.5rem 2rem;
+    border-radius: 1.5rem;
+    margin: 1rem 2rem;
+    @include mixins.button-shadow;
+    &::before {
+      content: counter(steps);
+      counter-increment: steps;
+      color: white;
+      background-color: variables.$primary_color;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      position: absolute;
+      left: -0.7rem;
+      height: 1.5rem;
+      width: 1.5rem;
+    }
+    &:hover {
+      background-color: lighten(variables.$primary_color, 35%);
+      i::before {
+        color: variables.$primary_color;
+      }
+    }
+    & i.fas {
+      margin-right: 1rem;
+      color: lightgray;
+      font-size: 1.5rem;
+    }
+  }
+}

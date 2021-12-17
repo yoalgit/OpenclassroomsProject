@@ -1,0 +1,59 @@
+@use "../Utils/variables";
+.menu {
+  &__img {
+    max-width: 100%;
+  }
+  &__contener {
+    background-color: variables.$background;
+    border-radius: 2rem;
+    width: 100%;
+    padding: 1rem;
+  }
+  &__title {
+    font-family: "Shrikhand";
+  }
+  &__subtitle {
+    font-weight: 300;
+    position: relative;
+    padding: 1rem 0;
+  }
+  &__subtitle::after {
+    content: "";
+    background: variables.$third_color;
+    width: 3rem;
+    height: 0.2rem;
+    position: absolute;
+    top: 40px;
+    left: 0;
+  }
+}
+.menu-card {
+  padding: 0.5rem 4rem 0.5rem 0.5rem;
+  background-color: variables.$but-font-color;
+  margin: 2rem 0;
+  border-radius: 1rem;
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  &__subcontent {
+    font-weight: 300;
+    padding: 0.5rem 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  &__price {
+    margin-left: auto;
+    position: absolute;
+    right: 25px;
+    bottom: 15px;
+    font-weight: 700;
+  }
+  &__price::after {
+    content: "test";
+    width: 100%;
+    position: absolute;
+    left: 3rem;
+  }
+}

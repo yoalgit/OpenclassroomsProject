@@ -1,0 +1,13 @@
+.local {
+  background-color: #eaeaea;
+  justify-content: center;
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem;
+  > * {
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
