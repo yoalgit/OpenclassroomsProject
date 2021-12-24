@@ -1,4 +1,10 @@
 @use "../Utils/variables";
+@use "../Utils/mixins";
+@use "../Utils/animations";
+#gradient {
+  --heart-primary-color: #9356dc;
+  --heart-second-color: #ff79da;
+}
 .menu {
   &__img {
     max-width: 100%;
@@ -8,9 +14,27 @@
     border-radius: 2rem;
     width: 100%;
     padding: 1rem;
+    position: relative;
+    margin-top: -4rem;
   }
   &__title {
     font-family: "Shrikhand";
+  }
+  &__like {
+    position: absolute;
+    right: 2rem;
+    top: 1.5rem;
+    &--full {
+      position: absolute;
+      right: 2rem;
+      top: 1.5rem;
+      opacity: 0;
+      transition: all 800ms;
+    }
+    &--full:hover {
+      opacity: 1;
+      fill: url(#gradient);
+    }
   }
   &__subtitle {
     font-weight: 300;
@@ -26,34 +50,85 @@
     top: 40px;
     left: 0;
   }
+  &__btn {
+    color: variables.$but-font-color;
+    font-weight: bold;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 2rem;
+    transition: transform 200ms;
+    margin-top: 1rem;
+    cursor: pointer;
+    @include mixins.button-shadow;
+    background: linear-gradient(
+      to top,
+      variables.$primary_color,
+      variables.$second_color
+    );
+    &:hover {
+      transform: scale(1.02);
+      opacity: 0.9;
+    }
+  }
 }
+
 .menu-card {
-  padding: 0.5rem 4rem 0.5rem 0.5rem;
+  $numberOfItems: 9;
+  @for $i from 1 through $numberOfItems {
+    &:nth-of-type(#{$i}) {
+      animation-delay: 200ms * $i;
+    }
+  }
   background-color: variables.$but-font-color;
   margin: 2rem 0;
   border-radius: 1rem;
-  width: 100%;
-  height: 100%;
-  position: relative;
+  overflow: hidden;
+  display: flex;
+  cursor: pointer;
+  animation: appear 1s;
+  animation-fill-mode: both;
 
+  &__heading {
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 1rem;
+  }
+  &__content,
   &__subcontent {
-    font-weight: 300;
-    padding: 0.5rem 0;
+    padding-bottom: 0.5rem;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
   }
   &__price {
-    margin-left: auto;
-    position: absolute;
-    right: 25px;
-    bottom: 15px;
     font-weight: 700;
+    display: flex;
+    align-items: end;
+    padding: 1.5rem 1rem;
   }
-  &__price::after {
-    content: "test";
-    width: 100%;
-    position: absolute;
-    left: 3rem;
+
+  &__check {
+    background-color: variables.$third_color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: -5rem;
+    width: 5rem;
+    transition: all 0.5s;
+  }
+
+  &:hover .menu-card__check {
+    margin-right: 0;
+  }
+  &__icon {
+    color: white;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &:hover .menu-card__icon {
+    animation: checked 0.5s ease-in-out;
   }
 }

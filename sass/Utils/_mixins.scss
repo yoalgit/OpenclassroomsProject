@@ -1,7 +1,7 @@
 @use "./variables";
 
 @mixin gradient($opacity: 0.9) {
-  background: linear-gradient(
+  background-image: linear-gradient(
     to top,
     variables.$primary_color,
     variables.$second_color
@@ -28,5 +28,27 @@
   &:hover {
     transform: scale(1.02);
     opacity: 0.9;
+  }
+}
+
+@mixin btn-like($opacity: 1, $right: 2rem, $top: 1rem) {
+  position: absolute;
+  right: $right;
+  top: $top;
+  opacity: $opacity;
+  transition: all 200ms ease-in-out;
+}
+
+@mixin btn-like-full {
+  &::before {
+    @include like-btn;
+  }
+  &::after {
+    @include like-btn($opacity: 0, $font-weight: 900, $color: transparent);
+    @include gradient(1);
+  }
+  &:hover::after {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
   }
 }

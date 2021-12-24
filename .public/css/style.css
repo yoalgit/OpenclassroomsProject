@@ -139,8 +139,9 @@ header {
 }
 .card__img {
   width: 100%;
-  height: 16rem;
+  height: 15rem;
   object-fit: cover;
+  object-position: 0px -60px;
 }
 .card__heading {
   background-color: white;
@@ -163,19 +164,19 @@ header {
   --heart-second-color: #ff79da;
 }
 
-.btn__heart {
+.btn__like--empty {
   position: absolute;
-  right: 0.5rem;
-  top: 1rem;
+  right: 1rem;
+  top: 1.5rem;
 }
-.btn__heart--full {
+.btn__like--full {
   position: absolute;
-  right: 0.5rem;
-  top: 1rem;
+  right: 1rem;
+  top: 1.5rem;
   opacity: 0;
   transition: all 600ms;
 }
-.btn__heart--full:hover {
+.btn__like--full:hover {
   opacity: 1;
   fill: url(#gradient);
 }
@@ -199,6 +200,49 @@ header {
   width: 1.5rem;
 }
 
+@keyframes loader {
+  to {
+    transform: scale(0);
+  }
+}
+@keyframes smoke {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(0.1rem);
+  }
+  75% {
+    opacity: 0;
+    transform: translateY(-0.1rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes checked {
+  0% {
+    transform: rotate(-270deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+@keyframes appear {
+  0% {
+    transform: translateY(50%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+#gradient {
+  --heart-primary-color: #9356dc;
+  --heart-second-color: #ff79da;
+}
+
 .menu__img {
   max-width: 100%;
 }
@@ -207,9 +251,27 @@ header {
   border-radius: 2rem;
   width: 100%;
   padding: 1rem;
+  position: relative;
+  margin-top: -4rem;
 }
 .menu__title {
   font-family: "Shrikhand";
+}
+.menu__like {
+  position: absolute;
+  right: 2rem;
+  top: 1.5rem;
+}
+.menu__like--full {
+  position: absolute;
+  right: 2rem;
+  top: 1.5rem;
+  opacity: 0;
+  transition: all 800ms;
+}
+.menu__like--full:hover {
+  opacity: 1;
+  fill: url(#gradient);
 }
 .menu__subtitle {
   font-weight: 300;
@@ -225,35 +287,132 @@ header {
   top: 40px;
   left: 0;
 }
+.menu__btn {
+  color: white;
+  font-weight: bold;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 2rem;
+  transition: transform 200ms;
+  margin-top: 1rem;
+  cursor: pointer;
+  box-shadow: 0px 10px 20px 0px rgba(151, 144, 144, 0.7);
+  -webkit-box-shadow: 0px 10px 20px 0px rgba(151, 144, 144, 0.7);
+  -moz-box-shadow: 0px 10px 20px 0px rgba(151, 144, 144, 0.7);
+  background: linear-gradient(to top, #9356dc, #ff79da);
+}
+.menu__btn:hover {
+  transform: scale(1.02);
+  opacity: 0.9;
+}
 
 .menu-card {
-  padding: 0.5rem 4rem 0.5rem 0.5rem;
   background-color: white;
   margin: 2rem 0;
   border-radius: 1rem;
-  width: 100%;
-  height: 100%;
-  position: relative;
+  overflow: hidden;
+  display: flex;
+  cursor: pointer;
+  animation: appear 1s;
+  animation-fill-mode: both;
 }
-.menu-card__subcontent {
-  font-weight: 300;
-  padding: 0.5rem 0;
+.menu-card:nth-of-type(1) {
+  animation-delay: 200ms;
+}
+.menu-card:nth-of-type(2) {
+  animation-delay: 400ms;
+}
+.menu-card:nth-of-type(3) {
+  animation-delay: 600ms;
+}
+.menu-card:nth-of-type(4) {
+  animation-delay: 800ms;
+}
+.menu-card:nth-of-type(5) {
+  animation-delay: 1000ms;
+}
+.menu-card:nth-of-type(6) {
+  animation-delay: 1200ms;
+}
+.menu-card:nth-of-type(7) {
+  animation-delay: 1400ms;
+}
+.menu-card:nth-of-type(8) {
+  animation-delay: 1600ms;
+}
+.menu-card:nth-of-type(9) {
+  animation-delay: 1800ms;
+}
+.menu-card__heading {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 1rem;
+}
+.menu-card__content, .menu-card__subcontent {
+  padding-bottom: 0.5rem;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
 }
 .menu-card__price {
-  margin-left: auto;
-  position: absolute;
-  right: 25px;
-  bottom: 15px;
   font-weight: 700;
+  display: flex;
+  align-items: end;
+  padding: 1.5rem 1rem;
 }
-.menu-card__price::after {
-  content: "test";
-  width: 100%;
-  position: absolute;
-  left: 3rem;
+.menu-card__check {
+  background-color: #99e2d0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: -5rem;
+  width: 5rem;
+  transition: all 0.5s;
+}
+.menu-card:hover .menu-card__check {
+  margin-right: 0;
+}
+.menu-card__icon {
+  color: white;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.menu-card:hover .menu-card__icon {
+  animation: checked 0.5s ease-in-out;
+}
+
+#loader {
+  position: fixed;
+  background-color: #ffffff;
+  height: 100vh;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.9;
+  animation: loader 200ms 5s forwards;
+  transform-origin: top;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#loader__svg {
+  width: 15rem;
+}
+
+.loader__smoke {
+  animation: smoke 1.5s infinite;
+  animation-fill-mode: backwards;
+}
+.loader__smoke:nth-child(1) {
+  animation-delay: 100ms;
+}
+.loader__smoke:nth-child(2) {
+  animation-delay: 200ms;
+}
+.loader__smoke:nth-child(3) {
+  animation-delay: 300ms;
 }
 
 /*# sourceMappingURL=style.css.map */

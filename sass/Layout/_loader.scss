@@ -1,0 +1,26 @@
+#loader {
+  position: fixed;
+  background-color: #ffffff;
+  height: 100vh;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.9;
+  animation: loader 200ms 5s forwards;
+  transform-origin: top;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#loader__svg {
+  width: 15rem;
+}
+.loader__smoke {
+  $numberOfItems: 3;
+  @for $i from 1 through $numberOfItems {
+    &:nth-child(#{$i}) {
+      animation-delay: 100ms * $i;
+    }
+  }
+  animation: smoke 1.5s infinite;
+  animation-fill-mode: backwards;
+}
