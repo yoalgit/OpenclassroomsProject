@@ -1,6 +1,8 @@
+@use "../Utils/mixins";
+@use "../Utils/include-media";
+
 .footer {
-  display: flex;
-  flex-direction: column;
+  @include mixins.flex-container;
   color: white;
   background-color: #353535;
   padding: 1rem;
@@ -9,6 +11,9 @@
     font-family: "Shrikhand";
     font-size: 1rem;
     padding-bottom: 1rem;
+    @include include-media.media(">desktop", "<=3840px") {
+      font-size: larger;
+    }
   }
   &__link {
     padding: 0.3rem;

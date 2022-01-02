@@ -1,3 +1,4 @@
+@use "../Utils/mixins";
 #loader {
   position: fixed;
   background-color: #ffffff;
@@ -5,11 +6,13 @@
   inset: 0;
   z-index: 1;
   opacity: 0.9;
-  animation: loader 200ms 5s forwards;
+  animation: loader 200ms 3s forwards;
   transform-origin: top;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include mixins.flex-container(
+    $direction: null,
+    $justify: center,
+    $alignment: center
+  );
 }
 #loader__svg {
   width: 15rem;
@@ -21,6 +24,6 @@
       animation-delay: 100ms * $i;
     }
   }
-  animation: smoke 1.5s infinite;
+  animation: smoke 1s 3;
   animation-fill-mode: backwards;
 }

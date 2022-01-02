@@ -1,5 +1,5 @@
 @use "../Utils/variables";
-
+@use "../Utils/include-media";
 header {
   text-align: center;
   box-shadow: 0 0 0.5rem #cecece;
@@ -7,4 +7,7 @@ header {
   font-size: small;
   padding: 0.5rem;
   position: relative;
+  @include include-media.media(">desktop", "<=3840px") {
+    font-size: x-large;
+  }
 }

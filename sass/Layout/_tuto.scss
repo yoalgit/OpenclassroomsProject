@@ -1,13 +1,16 @@
 @use "../Utils/variables";
 @use "../Utils/mixins";
-
+@use "../Utils/include-media";
 .tuto {
   counter-reset: steps;
   margin: 0.5rem;
   &__list {
-    display: flex;
-    flex-direction: column;
+    @include mixins.flex-container();
+    @include include-media.media(">desktop") {
+      @include mixins.flex-container(row);
+    }
   }
+
   &__btn {
     position: relative;
     display: flex;
@@ -17,6 +20,9 @@
     padding: 1.5rem 2rem;
     border-radius: 1.5rem;
     margin: 1rem 2rem;
+    @include include-media.media(">desktop") {
+      width: 100%;
+    }
     @include mixins.button-shadow;
     &::before {
       content: counter(steps);

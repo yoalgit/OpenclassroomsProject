@@ -1,5 +1,18 @@
 @use "./variables";
 
+@mixin flex-container(
+  $direction: column,
+  $justify: null,
+  $alignment: null,
+  $wrap: null
+) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $alignment;
+  flex-wrap: $wrap;
+}
+
 @mixin gradient($opacity: 0.9) {
   background-image: linear-gradient(
     to top,
@@ -7,16 +20,16 @@
     variables.$second_color
   );
 }
+
 @mixin button-shadow {
   box-shadow: 0px 10px 20px 0px rgba(151, 144, 144, 0.7);
   -webkit-box-shadow: 0px 10px 20px 0px rgba(151, 144, 144, 0.7);
   -moz-box-shadow: 0px 10px 20px 0px rgba(151, 144, 144, 0.7);
 }
 
-@mixin base-button {
+@mixin gradient-button {
   color: white;
-  font-weight: 300;
-  font-size: 1.5rem;
+  font-size: 1rem;
   padding: 1rem 2rem;
   border: none;
   border-radius: 2rem;
@@ -30,25 +43,26 @@
     opacity: 0.9;
   }
 }
-
-@mixin btn-like($opacity: 1, $right: 2rem, $top: 1rem) {
+@mixin button-like {
   position: absolute;
-  right: $right;
-  top: $top;
-  opacity: $opacity;
-  transition: all 200ms ease-in-out;
-}
+  right: 1rem;
+  bottom: 1.5rem;
+  font-size: 1.5rem;
+  cursor: pointer;
 
-@mixin btn-like-full {
-  &::before {
-    @include like-btn;
+  & input[type="checkbox"]:checked ~ .unchecked {
+    display: none;
   }
-  &::after {
-    @include like-btn($opacity: 0, $font-weight: 900, $color: transparent);
-    @include gradient(1);
+
+  & input[type="checkbox"]:checked ~ .checked {
+    display: inline-block;
+    color: rgba(255, 255, 255, 0);
   }
-  &:hover::after {
-    opacity: 1;
-    transform: translateY(-50%) scale(1);
+
+  & input[type="checkbox"],
+  & .checked {
+    display: none;
+    animation: like 2s;
+    animation-fill-mode: forwards;
   }
 }
