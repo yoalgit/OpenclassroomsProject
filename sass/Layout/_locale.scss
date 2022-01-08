@@ -1,14 +1,15 @@
+@use "../Utils/variables";
 @use "../Utils/mixins";
 @use "../Utils/include-media";
 .locale {
-  background-color: #eaeaea;
+  background-color: variables.$second_background;
   @include mixins.flex-container($direction: row, $justify: center);
-  gap: 0.5rem;
-  padding: 1rem;
+  gap: 1em;
+  padding: 0.6em;
+  font-size: 0.8em;
   > * {
-    font-size: 15px;
     @include include-media.media(">desktop") {
-      font-size: 20px;
+      font-size: 1.55em;
     }
   }
 }

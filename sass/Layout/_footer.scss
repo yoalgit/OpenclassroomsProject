@@ -1,24 +1,23 @@
+@use "../Utils/variables";
 @use "../Utils/mixins";
 @use "../Utils/include-media";
 
 .footer {
   @include mixins.flex-container;
   color: white;
-  background-color: #353535;
-  padding: 1rem;
+  background-color: variables.$third-background;
+  padding: 1em;
+  font-size: 1em;
 
   &__title {
     font-family: "Shrikhand";
-    font-size: 1rem;
-    padding-bottom: 1rem;
-    @include include-media.media(">desktop", "<=3840px") {
-      font-size: larger;
-    }
+    padding: 0.5em 0;
   }
+
   &__link {
-    padding: 0.3rem;
+    padding: 0.3em;
   }
   &__link i {
-    width: 1.5rem;
+    width: 1.5em;
   }
 }

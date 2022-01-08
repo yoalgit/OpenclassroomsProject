@@ -2,125 +2,123 @@
 @use "../Utils/mixins";
 @use "../Utils/animations";
 @use "../Utils/include-media";
-.header__heading {
-  &::before {
-    font-family: "Font Awesome 5 Free";
-    content: "\f060";
-    left: 1rem;
-    top: 50%;
-    font-size: 20px;
-  }
-}
+
 .menu {
-  background-color: variables.$background;
+  background-color: variables.$primary-background;
   &__img {
-    max-width: 100%;
-    @include include-media.media(">tablet") {
-      width: 100%;
-      height: 25rem;
-      object-fit: cover;
+    width: 100%;
+    height: 18em;
+    object-fit: cover;
+    @include include-media.media(">desktop") {
+      height: 25em;
     }
   }
   &__contener {
-    background-color: variables.$background;
-    border-radius: 2rem;
+    background-color: variables.$primary-background;
+    border-radius: 2em;
     width: 100%;
-    padding: 1rem;
+    padding: 1em;
     position: relative;
-    margin-top: -4rem;
+    margin-top: -4em;
     @include mixins.flex-container;
-    @include include-media.media(">desktop") {
+    gap: 1em;
+    @include include-media.media(">tablet") {
       @include mixins.flex-container(
         $direction: row,
         $justify: center,
         $wrap: wrap
       );
     }
+    @include include-media.media(">desktop") {
+      padding: 2em;
+    }
+    @include include-media.media(">tv") {
+      gap: 3em;
+      padding: 2.5em;
+    }
   }
   &__title {
+    margin-top: 1em;
     font-family: "Shrikhand";
     position: relative;
-    @include include-media.media(">desktop") {
+    @include include-media.media(">tablet") {
       width: 100%;
     }
   }
-  &__like {
-    position: absolute;
-    right: 2rem;
-    top: 1.5rem;
-    &--full {
-      position: absolute;
-      right: 2rem;
-      top: 1.5rem;
-      opacity: 0;
-      transition: all 800ms;
-    }
-    &--full:hover {
-      opacity: 1;
-      fill: url(#gradient);
-    }
-  }
+
   &__subtitle {
     font-weight: 300;
     position: relative;
-    padding: 1rem 0;
-    @include include-media.media(">desktop") {
+    padding: 1em 0;
+    @include include-media.media(">tablet") {
       width: 100%;
     }
   }
   &__subtitle::after {
     content: "";
     background: variables.$third_color;
-    width: 3rem;
-    height: 0.2rem;
+    width: 3em;
+    height: 0.2em;
     position: absolute;
-    top: 40px;
+    top: 2.5em;
     left: 0;
   }
   &__command {
+    margin: 0 2em;
     @include mixins.flex-container($direction: null, $alignment: center);
   }
   &__btn {
     @include mixins.gradient-button;
-    margin: 1rem auto;
+    margin: 2em auto;
   }
 }
 
 .menu-card {
-  $numberOfItems: 9;
+  $numberOfItems: 10;
   @for $i from 1 through $numberOfItems {
     &:nth-of-type(#{$i}) {
       animation-delay: 200ms * $i;
     }
   }
   background-color: variables.$but-font-color;
-  margin: 2rem 0;
-  border-radius: 1rem;
+  border-radius: 1em;
   overflow: hidden;
   display: flex;
   cursor: pointer;
   animation: appear 1s;
   animation-fill-mode: both;
+  @include mixins.button-shadow;
+  @include include-media.media(">tablet") {
+    width: 44%;
+    margin: 1em;
+  }
   @include include-media.media(">desktop") {
-    width: 30%;
-    margin: 1rem;
+    width: 45%;
+    margin: 0;
+  }
+  @include include-media.media(">tv") {
+    width: 32%;
   }
   &__heading {
+    @include mixins.flex-container;
+    gap: 0.5em;
     flex: 1;
     overflow: hidden;
     white-space: nowrap;
-    padding: 1rem;
+    padding: 1em 0.5em;
   }
   &__content,
   &__subcontent {
-    padding-bottom: 0.5rem;
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  &__subcontent {
+    font-size: 0.75em;
+  }
   &__price {
     font-weight: 700;
-    @include mixins.flex-container($direction: null, $alignment: center);
-    padding: 1.5rem 1rem;
+    @include mixins.flex-container($direction: null, $alignment: end);
+    padding: 1em 0.6em;
   }
 
   &__check {
@@ -130,8 +128,8 @@
       $alignment: center,
       $justify: center
     );
-    margin-right: -5rem;
-    width: 5rem;
+    margin-right: -5em;
+    width: 5em;
     transition: all 0.5s;
   }
 
@@ -140,7 +138,7 @@
   }
   &__icon {
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.5em;
     @include mixins.flex-container(
       $direction: null,
       $alignment: center,
@@ -150,5 +148,18 @@
 
   &:hover .menu-card__icon {
     animation: checked 0.5s ease-in-out;
+  }
+}
+
+.btn-like.btn-like--page {
+  top: 1.8em;
+  right: 1.5em;
+  @include include-media.media(">desktop") {
+    top: 2.5em;
+    right: 2.5em;
+  }
+  @include include-media.media(">tv") {
+    top: 2.7em;
+    right: 4em;
   }
 }

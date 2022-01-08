@@ -3,11 +3,12 @@
 @use "../Utils/include-media";
 .tuto {
   counter-reset: steps;
-  margin: 0.5rem;
+  margin: 2em 1em;
   &__list {
     @include mixins.flex-container();
+    margin: 1em 0;
     @include include-media.media(">desktop") {
-      @include mixins.flex-container(row);
+      @include mixins.flex-container(row, space-evenly);
     }
   }
 
@@ -16,12 +17,13 @@
     display: flex;
     align-items: center;
     list-style-type: none;
-    background-color: variables.$background;
-    padding: 1.5rem 2rem;
-    border-radius: 1.5rem;
-    margin: 1rem 2rem;
+    background-color: variables.$primary-background;
+    padding: 1.5em 2em;
+    border-radius: 1.5em;
+    margin: 1em 0.5rem;
     @include include-media.media(">desktop") {
-      width: 100%;
+      width: 30%;
+      max-width: 1000px;
     }
     @include mixins.button-shadow;
     &::before {
@@ -34,9 +36,9 @@
       justify-content: center;
       border-radius: 50%;
       position: absolute;
-      left: -0.7rem;
-      height: 1.5rem;
-      width: 1.5rem;
+      left: -0.7em;
+      height: 1.5em;
+      width: 1.5em;
     }
     &:hover {
       background-color: lighten(variables.$primary_color, 35%);
@@ -45,9 +47,9 @@
       }
     }
     & i.fas {
-      margin-right: 1rem;
-      color: lightgray;
-      font-size: 1.5rem;
+      margin-right: 1em;
+      color: variables.$third-background;
+      font-size: 1.5em;
     }
   }
 }
